@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunset Cover Studio — GTA-style cover art maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>Sunset Cover Studio</h1>
+  <p>Your photo, a caption, and a sunset — into poster cover art.</p>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>1 · Photos</h2>
+      <p class="hint">Upload up to three photos, or use a bundled sample.</p>
+      <div class="photo-slots">
+        <label class="slot">Photo 1 <input data-photo-slot="0" type="file" accept="image/*"></label>
+        <label class="slot">Photo 2 <input data-photo-slot="1" type="file" accept="image/*"></label>
+        <label class="slot">Photo 3 <input data-photo-slot="2" type="file" accept="image/*"></label>
+      </div>
+      <div class="row">
+        <button type="button" data-sample="0">Sample: Boulevard</button>
+        <button type="button" data-sample="1">Sample: Pier</button>
+        <button type="button" data-sample="2">Sample: Skyline</button>
+      </div>
+      <p class="hint">Photos stay on your machine — nothing is uploaded.</p>
+    </div>
+
+    <div class="group">
+      <h2>2 · Layout</h2>
+      <div class="row" id="templates" role="group" aria-label="Layout"></div>
+    </div>
+
+    <div class="group">
+      <h2>3 · Selected panel</h2>
+      <p class="hint" id="panel-label">Panel 1 of 3</p>
+      <div class="row" id="panels" role="group" aria-label="Select panel"></div>
+      <label>Photo in this panel
+        <select id="panel-photo">
+          <option value="0">Photo 1</option>
+          <option value="1">Photo 2</option>
+          <option value="2">Photo 3</option>
+        </select>
+      </label>
+      <label>Zoom <span id="zoom-value">100%</span>
+        <input id="panel-zoom" type="range" min="100" max="300" value="100">
+      </label>
+      <label>Move sideways
+        <input id="panel-x" type="range" min="-60" max="60" value="0">
+      </label>
+      <label>Move up / down
+        <input id="panel-y" type="range" min="-60" max="60" value="0">
+      </label>
+      <button type="button" id="panel-fit">Reset panel to fit</button>
+      <p class="hint">Tip: click a panel in the preview to select it, then drag it to move its photo.</p>
+    </div>
+
+    <div class="group">
+      <h2>4 · Colour grade</h2>
+      <div class="row" id="grades" role="group" aria-label="Colour grade"></div>
+    </div>
+
+    <div class="group">
+      <h2>5 · Caption</h2>
+      <label>Title
+        <input id="caption" type="text" maxlength="40" value="Sunset Heist">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="60" value="A coastal getaway">
+      </label>
+      <div class="row" id="title-styles" role="group" aria-label="Title style"></div>
+    </div>
+
+    <div class="group">
+      <h2>6 · Export</h2>
+      <div class="row" id="sizes" role="group" aria-label="Export size"></div>
+      <button type="button" id="export" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+    <p class="hint">Live preview — what you see is what exports.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
